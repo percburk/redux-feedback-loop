@@ -10,9 +10,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 // reducers
-const feedbackReducer = (state={}, action) => {
-  return state;
-}
+import feedbackReducer from './components/redux/reducers/feedback.reducer';
 
 const storeInstance = createStore(
   combineReducers({
