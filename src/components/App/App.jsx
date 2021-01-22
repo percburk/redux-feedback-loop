@@ -4,11 +4,11 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Container, Box, Typography } from '@material-ui/core';
 
 // import components into App
-import Comments from '../Comments/Comments';
 import Home from '../Home/Home';
 import Feeling from '../Feeling/Feeling';
-import Support from '../Support/Support';
 import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
+import Comments from '../Comments/Comments';
 
 function App() {
   return (
@@ -23,10 +23,10 @@ function App() {
         >
           <Typography variant="h3">Feedback!</Typography>
         </Box>
-        <Route path="/" component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/feeling" component={Feeling} />
         <Route path="/understanding" component={Understanding} />
-        <Route path="support" component={Support} />
+        <Route path="/support" component={Support} />
         <Route path="/comments" component={Comments} />
       </Container>
     </Router>
