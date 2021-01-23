@@ -1,5 +1,13 @@
 import { useHistory } from 'react-router-dom';
-import { Box, Typography, Button, Slider, Grid } from '@material-ui/core';
+import {
+  Box,
+  Typography,
+  Button,
+  Slider,
+  Grid,
+  Snackbar,
+} from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
@@ -7,6 +15,7 @@ function Support() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [slider, setSlider] = useState(0);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const marks = [
     { value: 1, label: '1' },
@@ -24,13 +33,19 @@ function Support() {
 
   const handleNext = () => {
     if (slider === 0) {
-      alert('please choose a value!');
+      setSnackbarOpen(true);
     } else {
       dispatch({
         type: 'ADD_SUPPORT',
         payload: slider,
       });
       history.push('/comments');
+    }
+  };
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return setSnackbarOpen(false);
     }
   };
 
@@ -65,6 +80,20 @@ function Support() {
         <Button variant="contained" color="primary" onClick={handleNext}>
           Next
         </Button>
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackbarClose}
+        >
+          <Alert
+            variant="filled"
+            elevation={3}
+            onClose={handleSnackbarClose}
+            severity="error"
+          >
+            Please complete your feedback.
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );

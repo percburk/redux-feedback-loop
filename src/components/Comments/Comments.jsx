@@ -6,22 +6,18 @@ import { useState } from 'react';
 function Comments() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [comment, setComment] = useState(``);
+  const [comment, setComment] = useState('');
 
   const handleComment = (event) => {
     setComment(event.target.value);
   };
 
   const handleNext = () => {
-    if (!comment) {
-      alert('please fill out the comment field!');
-    } else {
-      dispatch({
-        type: 'ADD_COMMENTS',
-        payload: comment,
-      });
-      history.push('/viewResults');
-    }
+    dispatch({
+      type: 'ADD_COMMENTS',
+      payload: comment,
+    });
+    history.push('/viewResults');
   };
 
   return (
