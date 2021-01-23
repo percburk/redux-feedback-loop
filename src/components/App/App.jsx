@@ -10,6 +10,7 @@ import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import ViewResults from '../ViewResults/ViewResults';
+import Admin from '../Admin/Admin';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/support" component={Support} />
         <Route path="/comments" component={Comments} />
         <Route path="/viewResults" component={ViewResults} />
+        <Route path="/admin" component={Admin} />
       </Container>
     </Router>
   );

@@ -19,7 +19,23 @@ router.post('/', (req, res) => {
       results.comments,
     ])
     .then(res.sendStatus(201))
-    .catch((err) => console.error(`error in POST with ${queryText}`, err));
+    .catch((err) => {
+      console.error(`error in POST with ${queryText}`, err);
+      res.sendStatus(500);
+    });
+});
+
+// GET route to get all feedback entries to Admin component
+router.get('/', (req, res) => {
+  const queryText = `SELECT * FROM "feedback" ORDER BY "date" DESC;`;
+
+  pool
+    .query(queryText)
+    .then((response) => res.send(response.rows))
+    .catch((err) => {
+      console.error(`error in GET with ${queryText}`, err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
