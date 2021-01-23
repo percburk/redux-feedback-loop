@@ -7,12 +7,13 @@ router.post('/', (req, res) => {
   let results = req.body;
 
   const queryText = `
-    INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-    VALUES ($1, $2, $3, $4);
+    INSERT INTO "feedback" ("name", "feeling", "understanding", "support", "comments")
+    VALUES ($1, $2, $3, $4, $5);
   `;
 
   pool
     .query(queryText, [
+      results.name,
       results.feeling,
       results.understanding,
       results.support,
