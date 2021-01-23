@@ -1,5 +1,8 @@
-// stores the feedback as an object, each piece of the feedback adding
-// a new key: value pair
+/*
+  stores the feedback as an object, each piece of the feedback adding
+  a new key: value pair
+*/
+
 const feedbackReducer = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_FEELING':
