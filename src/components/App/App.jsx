@@ -11,6 +11,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import ViewResults from '../ViewResults/ViewResults';
 import Admin from '../Admin/Admin';
+import Steps from '../Steps/Steps';
 
 function App() {
   return (
@@ -25,12 +26,24 @@ function App() {
         >
           <Typography variant="h3">Feedback!</Typography>
         </Box>
-        <Route path="/" exact component={Home} />
-        <Route path="/feeling" component={Feeling} />
-        <Route path="/understanding" component={Understanding} />
-        <Route path="/support" component={Support} />
-        <Route path="/comments" component={Comments} />
-        <Route path="/viewResults" component={ViewResults} />
+        <Route path="/" exact>
+          <Home Steps={Steps} />
+        </Route>
+        <Route path="/feeling">
+          <Feeling Steps={Steps} />
+        </Route>
+        <Route path="/understanding">
+          <Understanding Steps={Steps} />
+        </Route>
+        <Route path="/support">
+          <Support Steps={Steps} />
+        </Route>
+        <Route path="/comments">
+          <Comments Steps={Steps} />
+        </Route>
+        <Route path="/viewResults">
+          <ViewResults Steps={Steps} />
+        </Route>
         <Route path="/admin" component={Admin} />
       </Container>
     </Router>

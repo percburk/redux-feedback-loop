@@ -26,9 +26,10 @@ const feedbackReducer = (state = {}, action) => {
     case 'CLEAR':
       return {};
 
-    // 'CLEAR_KEEP_NAME' is called on ViewResults to reset feedback, keep name
+    // 'CLEAR_KEEP_NAME' is called on ViewResults to reset feedback, keep name,
+    // also adds a reset: true to check on Feelings to display Snackbar
     case 'CLEAR_KEEP_NAME':
-      return { name: action.payload };
+      return { name: action.payload.name, reset: action.payload.reset };
 
     default:
       return state;

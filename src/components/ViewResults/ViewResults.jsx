@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
-function ViewResults() {
+function ViewResults({ Steps }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const results = useSelector((state) => state.feedbackReducer);
@@ -36,8 +36,8 @@ function ViewResults() {
     } else if (clicked === 'yes') {
       dispatch({
         type: 'CLEAR_KEEP_NAME',
-        payload: results.name,
-      })
+        payload: { name: results.name, reset: true },
+      });
       history.push('/feeling');
     }
   };
@@ -52,17 +52,24 @@ function ViewResults() {
         <Typography>How supported: {results.support}</Typography>
         <Typography>Comments: {results.comments}</Typography>
       </Box>
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Submit
-      </Button>
-      <Button variant="contained" color="secondary" onClick={handleDialogOpen}>
-        Reset
-      </Button>
+      <Box>
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
+          Submit
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleDialogOpen}
+        >
+          Reset
+        </Button>
+      </Box>
+      <Steps activeStep={5} />
       <Dialog open={dialogOpen} onClose={handleDialogClose}>
         <DialogTitle>{'Are you sure you want to reset?'}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          Your will need to start your feedback from the beginning.
+            Your will need to start your feedback from the beginning.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

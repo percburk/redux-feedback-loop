@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-function Home() {
+function Home({ Steps }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const feedback = useSelector((state) => state.feedbackReducer);
@@ -51,12 +51,14 @@ function Home() {
     if (reason === 'clickaway') {
       return setAlertSnackbarOpen(false);
     }
+    setAlertSnackbarOpen(false);
   };
 
   const handleSuccessSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return setSuccessSnackbarOpen(false);
     }
+    setSuccessSnackbarOpen(false);
   };
 
   return (
@@ -79,6 +81,7 @@ function Home() {
             <Button variant="contained" color="primary" onClick={handleClick}>
               Click to begin!
             </Button>
+            <Steps activeStep={0} />
             <Snackbar
               open={alertSnackbarOpen}
               autoHideDuration={6000}

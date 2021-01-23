@@ -3,7 +3,7 @@ import { Box, Typography, Button, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-function Comments() {
+function Comments({ Steps }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
@@ -35,6 +35,7 @@ function Comments() {
           Next
         </Button>
       </Box>
+      <Steps activeStep={4} />
     </Box>
   );
 }

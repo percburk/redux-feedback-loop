@@ -8,14 +8,16 @@ import {
   Snackbar,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 
-function Feeling() {
+function Feeling({ Steps }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [slider, setSlider] = useState(0);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [alertSnackbarOpen, setAlertSnackbarOpen] = useState(false);
+  const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
+  const feedbackReducer = useSelector((state) => state.feedbackReducer);
 
   const marks = [
     { value: 1, label: '1' },
@@ -26,6 +28,14 @@ function Feeling() {
     { value: 6, label: '6' },
   ];
 
+  useEffect(() => checkForReset(), []);
+
+  const checkForReset = () => {
+    if (feedbackReducer.reset) {
+      setSuccessSnackbarOpen(true);
+    }
+  };
+
   const handleSlider = (event, newValue) => {
     setSlider(newValue);
     console.log(slider);
@@ -33,7 +43,7 @@ function Feeling() {
 
   const handleNext = () => {
     if (slider === 0) {
-      setSnackbarOpen(true);
+      setAlertSnackbarOpen(true);
     } else {
       dispatch({
         type: 'ADD_FEELING',
@@ -43,9 +53,15 @@ function Feeling() {
     }
   };
 
-  const handleSnackbarClose = (event, reason) => {
+  const handleAlertSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return setSnackbarOpen(false);
+      return setAlertSnackbarOpen(false);
+    }
+  };
+
+  const handleSuccessSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return setSuccessSnackbarOpen(false);
     }
   };
 
@@ -79,21 +95,36 @@ function Feeling() {
         <Button variant="contained" color="primary" onClick={handleNext}>
           Next
         </Button>
-        <Snackbar
-          open={snackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert
-            variant="filled"
-            elevation={3}
-            onClose={handleSnackbarClose}
-            severity="error"
-          >
-            Please complete your feedback.
-          </Alert>
-        </Snackbar>
       </Box>
+      <Steps activeStep={1} />
+      <Snackbar
+        open={alertSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleAlertSnackbarClose}
+      >
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleAlertSnackbarClose}
+          severity="error"
+        >
+          Please complete your feedback.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={successSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSuccessSnackbarClose}
+      >
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleSuccessSnackbarClose}
+          severity="success"
+        >
+          Your feedback has been reset.
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

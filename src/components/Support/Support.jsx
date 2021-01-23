@@ -11,7 +11,7 @@ import { Alert } from '@material-ui/lab';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-function Support() {
+function Support({ Steps }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [slider, setSlider] = useState(0);
@@ -80,21 +80,22 @@ function Support() {
         <Button variant="contained" color="primary" onClick={handleNext}>
           Next
         </Button>
-        <Snackbar
-          open={snackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert
-            variant="filled"
-            elevation={3}
-            onClose={handleSnackbarClose}
-            severity="error"
-          >
-            Please complete your feedback.
-          </Alert>
-        </Snackbar>
       </Box>
+      <Steps activeStep={3} />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleSnackbarClose}
+          severity="error"
+        >
+          Please complete your feedback.
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

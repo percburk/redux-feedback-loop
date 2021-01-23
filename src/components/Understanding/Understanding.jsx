@@ -11,7 +11,7 @@ import { Alert } from '@material-ui/lab';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-function Understanding() {
+function Understanding({ Steps }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [slider, setSlider] = useState(0);
@@ -42,7 +42,7 @@ function Understanding() {
       history.push('/support');
     }
   };
-  
+
   const handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return setSnackbarOpen(false);
@@ -80,21 +80,22 @@ function Understanding() {
         <Button variant="contained" color="primary" onClick={handleNext}>
           Next
         </Button>
-        <Snackbar
-          open={snackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleSnackbarClose}
-        >
-          <Alert
-            variant="filled"
-            elevation={3}
-            onClose={handleSnackbarClose}
-            severity="error"
-          >
-            Please complete your feedback.
-          </Alert>
-        </Snackbar>
       </Box>
+      <Steps activeStep={2} />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleSnackbarClose}
+          severity="error"
+        >
+          Please complete your feedback.
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
