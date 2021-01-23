@@ -6,10 +6,12 @@ const feedbackReducer = (state = {}, action) => {
       return { ...state, feeling: action.payload };
     case 'ADD_UNDERSTANDING':
       return { ...state, understanding: action.payload };
-    case 'ADD_SUPPORTED':
-      return { ...state, supported: action.payload };
+    case 'ADD_SUPPORT':
+      return { ...state, support: action.payload };
     case 'ADD_COMMENTS':
       return { ...state, comments: action.payload };
+    case 'CLEAR':
+      return {};
     default:
       return state;
   }

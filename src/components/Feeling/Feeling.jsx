@@ -6,7 +6,16 @@ import { useState } from 'react';
 function Feeling() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [slider, setSlider] = useState(1);
+  const [slider, setSlider] = useState(0);
+
+  const marks = [
+    { value: 1, label: '1' },
+    { value: 2, label: '2' },
+    { value: 3, label: '3' },
+    { value: 4, label: '4' },
+    { value: 5, label: '5' },
+    { value: 6, label: '6' },
+  ];
 
   const handleSlider = (event, newValue) => {
     setSlider(newValue);
@@ -14,11 +23,15 @@ function Feeling() {
   };
 
   const handleNext = () => {
-    dispatch({
-      type: 'ADD_FEELING',
-      payload: slider,
-    });
-    history.push('/understanding');
+    if (slider === 0) {
+      alert('please choose a value!');
+    } else {
+      dispatch({
+        type: 'ADD_FEELING',
+        payload: slider,
+      });
+      history.push('/understanding');
+    }
   };
 
   return (
@@ -40,6 +53,7 @@ function Feeling() {
             max={6}
             valueLabelDisplay="auto"
             onChange={handleSlider}
+            marks={marks}
           />
         </Grid>
         <Grid item xs>
@@ -47,11 +61,7 @@ function Feeling() {
         </Grid>
       </Grid>
       <Box display="flex" justifyContent="center">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleNext}
-        >
+        <Button variant="contained" color="primary" onClick={handleNext}>
           Next
         </Button>
       </Box>

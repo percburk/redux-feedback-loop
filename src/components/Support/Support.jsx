@@ -6,7 +6,16 @@ import { useState } from 'react';
 function Support() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [slider, setSlider] = useState(1);
+  const [slider, setSlider] = useState(0);
+
+  const marks = [
+    { value: 1, label: '1' },
+    { value: 2, label: '2' },
+    { value: 3, label: '3' },
+    { value: 4, label: '4' },
+    { value: 5, label: '5' },
+    { value: 6, label: '6' },
+  ];
 
   const handleSlider = (event, newValue) => {
     setSlider(newValue);
@@ -14,11 +23,15 @@ function Support() {
   };
 
   const handleNext = () => {
-    dispatch({
-      type: 'ADD_SUPPORTED',
-      payload: slider,
-    });
-    history.push('/comments');
+    if (slider === 0) {
+      alert('please choose a value!');
+    } else {
+      dispatch({
+        type: 'ADD_SUPPORT',
+        payload: slider,
+      });
+      history.push('/comments');
+    }
   };
 
   return (
@@ -40,6 +53,8 @@ function Support() {
             max={6}
             valueLabelDisplay="auto"
             onChange={handleSlider}
+            marks={marks}
+            required
           />
         </Grid>
         <Grid item xs>
