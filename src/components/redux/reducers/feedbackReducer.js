@@ -1,5 +1,5 @@
 const feedbackReducer = (state = {}, action) => {
-  // adds to feedback object, eventually submitted to db to view on admin
+  // adds to feedback object, eventually submitted to db to view on Admin
   switch (action.type) {
     // 'ADD_NAME' on Home, required
     case 'ADD_NAME':
@@ -18,7 +18,6 @@ const feedbackReducer = (state = {}, action) => {
       return { ...state, support: action.payload };
 
     // 'ADD_COMMENTS' on Comments, not required
-
     case 'ADD_COMMENTS':
       return { ...state, comments: action.payload };
 

@@ -62,9 +62,9 @@ function Home({ Steps }) {
   };
 
   return (
-    <Box p={3} display="flex" justifyContent="center">
+    <Box p={3}>
       <FormControl>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={2} direction="row" alignItems="center">
           <Grid item>
             <InputLabel htmlFor="enterName">Enter your name</InputLabel>
             <Input
@@ -81,38 +81,38 @@ function Home({ Steps }) {
             <Button variant="contained" color="primary" onClick={handleClick}>
               Click to begin!
             </Button>
-            <Steps activeStep={0} />
-            <Snackbar
-              open={alertSnackbarOpen}
-              autoHideDuration={6000}
-              onClose={handleAlertSnackbarClose}
-            >
-              <Alert
-                variant="filled"
-                elevation={3}
-                onClose={handleAlertSnackbarClose}
-                severity="error"
-              >
-                Please enter your name.
-              </Alert>
-            </Snackbar>
-            <Snackbar
-              open={successSnackbarOpen}
-              autoHideDuration={6000}
-              onClose={handleSuccessSnackbarClose}
-            >
-              <Alert
-                variant="filled"
-                elevation={3}
-                onClose={handleSuccessSnackbarClose}
-                severity="success"
-              >
-                Thanks for submitting your feedback!
-              </Alert>
-            </Snackbar>
           </Grid>
         </Grid>
       </FormControl>
+      <Steps activeStep={0} />
+      <Snackbar
+        open={alertSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleAlertSnackbarClose}
+      >
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleAlertSnackbarClose}
+          severity="error"
+        >
+          Please enter your name.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={successSnackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSuccessSnackbarClose}
+      >
+        <Alert
+          variant="filled"
+          elevation={3}
+          onClose={handleSuccessSnackbarClose}
+          severity="success"
+        >
+          Thanks for submitting your feedback!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
