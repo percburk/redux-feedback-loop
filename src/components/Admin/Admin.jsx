@@ -1,6 +1,21 @@
+// material-ui imports
+import {
+  Box,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  Paper,
+} from '@material-ui/core';
+
+// system imports
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Box } from '@material-ui/core';
+import AdminListItem from '../AdminListItem/AdminListItem';
 
 function Admin() {
   useEffect(() => getFeedback(), []);
@@ -14,18 +29,35 @@ function Admin() {
   };
 
   return (
-    <div>
-      <ul>
-        {feedbackData.map((entry) => {
-          return (
-            <li key={entry.id}>
-              {entry.date} {entry.feeling} {entry.understanding}
-              {entry.support} {entry.comments} {entry.flagged}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Flag</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Feeling</TableCell>
+            <TableCell>Understanding</TableCell>
+            <TableCell>Support</TableCell>
+            <TableCell>Comments</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {feedbackData.map((entry) => {
+            return <AdminListItem key={entry.id} entry={entry} getFeedback={getFeedback} />
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+    // {feedbackData.map((entry) => {
+    //   return (
+    //     <li key={entry.id}>
+    //       {entry.date} {entry.feeling} {entry.understanding}
+    //       {entry.support} {entry.comments} {entry.flagged}
+    //     </li>
+    //   );
+    // })}
   );
 }
 

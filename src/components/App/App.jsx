@@ -16,7 +16,7 @@ import Steps from '../Steps/Steps';
 function App() {
   return (
     <Router>
-      <Container maxWidth="sm">
+      <Container maxWidth="lg">
         <Box
           p={3}
           m={3}
