@@ -14,11 +14,11 @@ Using client side routing, the user goes through four pages of feedback: Feeling
 
 ## Screen Shot
 
-[1](public/images/slider.png)
-[2](public/images/validation.png)
-[3](public/images/results.png)
-[4](public/images/snackbar.png)
-[5](public/images/admin.png)
+![slider](public/images/slider.png)
+![validation](public/images/validation.png)
+![results](public/images/results.png)
+![snackbar](public/images/snackbar.png)
+![admin](public/images/admin.png)
 
 ## Prerequisites
 
