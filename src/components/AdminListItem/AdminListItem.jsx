@@ -18,11 +18,11 @@ import {
 // system imports
 import axios from 'axios';
 import { useState } from 'react';
+import { DateTime } from 'luxon';
 
 function AdminListItem({ entry, getFeedback }) {
   const [rowOpen, setRowOpen] = useState(false);
   const [flagged, setFlagged] = useState(entry.flagged);
-  console.log(entry);
 
   const handleFlagged = () => {
     setFlagged(!flagged);
@@ -47,7 +47,7 @@ function AdminListItem({ entry, getFeedback }) {
             {flagged ? <Flag color="secondary" /> : <FlagOutlined />}
           </IconButton>
         </TableCell>
-        <TableCell>{entry.date}</TableCell>
+        <TableCell>{DateTime.fromISO(entry.date).toLocaleString()}</TableCell>
         <TableCell>{entry.name}</TableCell>
         <TableCell>{entry.feeling}</TableCell>
         <TableCell>{entry.understanding}</TableCell>
@@ -68,7 +68,7 @@ function AdminListItem({ entry, getFeedback }) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
           <Collapse in={rowOpen} timeout="auto" unmountOnExit>
-            <Box m={2}>
+            <Box m={2} textAlign="center">
               <Typography>{entry.comments}</Typography>
             </Box>
           </Collapse>
