@@ -19,7 +19,7 @@ import {
   ChatOutlined,
 } from '@material-ui/icons';
 
-function AdminListItem({ entry, getFeedback }) {
+function AdminListItem({ entry, getFeedback, setDeleteSnackbarOpen }) {
   const [rowOpen, setRowOpen] = useState(false);
   const [flagged, setFlagged] = useState(entry.flagged);
 
@@ -32,6 +32,7 @@ function AdminListItem({ entry, getFeedback }) {
   };
 
   const handleDelete = () => {
+    setDeleteSnackbarOpen(true);
     axios
       .delete(`/feedback/${entry.id}`)
       .then(getFeedback())
@@ -41,24 +42,24 @@ function AdminListItem({ entry, getFeedback }) {
   return (
     <>
       <TableRow>
-        <TableCell>
+        <TableCell align="center">
           <IconButton size="small" onClick={handleFlagged}>
             {flagged ? <Flag color="secondary" /> : <FlagOutlined />}
           </IconButton>
         </TableCell>
         <TableCell>{DateTime.fromISO(entry.date).toLocaleString()}</TableCell>
         <TableCell>{entry.name}</TableCell>
-        <TableCell>{entry.feeling}</TableCell>
-        <TableCell>{entry.understanding}</TableCell>
-        <TableCell>{entry.support}</TableCell>
-        <TableCell>
+        <TableCell align="center">{entry.feeling}</TableCell>
+        <TableCell align="center">{entry.understanding}</TableCell>
+        <TableCell align="center">{entry.support}</TableCell>
+        <TableCell align="center">
           {entry.comments && (
             <IconButton size="small" onClick={() => setRowOpen(!rowOpen)}>
               {rowOpen ? <ExpandLess /> : <ChatOutlined color="primary" />}
             </IconButton>
           )}
         </TableCell>
-        <TableCell>
+        <TableCell align="center">
           <IconButton size="small" onClick={handleDelete}>
             <DeleteOutline />
           </IconButton>
@@ -67,7 +68,7 @@ function AdminListItem({ entry, getFeedback }) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
           <Collapse in={rowOpen} timeout="auto" unmountOnExit>
-            <Box m={2} textAlign="center">
+            <Box m={2}>
               <Typography variant="body2">{entry.comments}</Typography>
             </Box>
           </Collapse>

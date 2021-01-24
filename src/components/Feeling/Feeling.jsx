@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui imports
-import { Box, Typography, Button, Grid, Snackbar } from '@material-ui/core';
+import { Box, Typography, Button, Snackbar, Paper } from '@material-ui/core';
+import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
 
 function Feeling({ Steps, FeedbackSlider }) {
@@ -22,6 +23,13 @@ function Feeling({ Steps, FeedbackSlider }) {
     }
   };
 
+  const handleBack = () => {
+    dispatch({
+      type: 'CLEAR',
+    });
+    history.push('/');
+  };
+
   const handleNext = () => {
     if (slider === 0) {
       setAlertSnackbarOpen(true);
@@ -38,36 +46,53 @@ function Feeling({ Steps, FeedbackSlider }) {
     if (reason === 'clickaway') {
       return setAlertSnackbarOpen(false);
     }
+    setAlertSnackbarOpen(false);
   };
 
   const handleSuccessSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return setSuccessSnackbarOpen(false);
     }
+    return setSuccessSnackbarOpen(false);
   };
 
   return (
-    <Box>
-      <Box p={3} m={3} display="flex" justifyContent="center">
-        <Typography>How are you feeling today?</Typography>
+    <>
+      <Box m={5}>
+        <Paper elevation={4}>
+          <Box paddingTop={6} paddingBottom={6}>
+            <Typography align="center">How are you feeling today?</Typography>
+            <Box p={4} display="flex" justifyContent="center">
+              <Typography align="right">Not so great.</Typography>
+              <Box width="65%" paddingLeft={5} paddingRight={5}>
+                <FeedbackSlider slider={slider} setSlider={setSlider} />
+              </Box>
+              <Typography>Great!</Typography>
+            </Box>
+          </Box>
+        </Paper>
       </Box>
-      <Grid container direction="row" spacing={3}>
-        <Grid item xs>
-          <Typography>Feeling bad...</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <FeedbackSlider slider={slider} setSlider={setSlider} />
-        </Grid>
-        <Grid item xs>
-          <Typography>Feeling great!</Typography>
-        </Grid>
-      </Grid>
-      <Box display="flex" justifyContent="center">
-        <Button variant="contained" color="primary" onClick={handleNext}>
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleBack}
+          startIcon={<ArrowBack />}
+        >
+          Back
+        </Button>
+        <Box width="75%" marginLeft={3} marginRight={3}>
+          <Steps activeStep={1} />
+        </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNext}
+          endIcon={<ArrowForward />}
+        >
           Next
         </Button>
       </Box>
-      <Steps activeStep={1} />
       <Snackbar
         open={alertSnackbarOpen}
         autoHideDuration={6000}
@@ -91,12 +116,12 @@ function Feeling({ Steps, FeedbackSlider }) {
           variant="filled"
           elevation={3}
           onClose={handleSuccessSnackbarClose}
-          severity="success"
+          severity="info"
         >
           Your feedback has been reset.
         </Alert>
       </Snackbar>
-    </Box>
+    </>
   );
 }
 

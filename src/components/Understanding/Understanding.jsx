@@ -3,13 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
 // material-ui imports
-import {
-  Box,
-  Typography,
-  Button,
-  Grid,
-  Snackbar,
-} from '@material-ui/core';
+import { Box, Typography, Button, Paper, Snackbar } from '@material-ui/core';
+import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
 
 function Understanding({ Steps, FeedbackSlider }) {
@@ -30,34 +25,54 @@ function Understanding({ Steps, FeedbackSlider }) {
     }
   };
 
+  const handleBack = () => {
+    history.push('/feeling');
+  }
+
   const handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return setSnackbarOpen(false);
     }
+    return setSnackbarOpen(false);
   };
 
   return (
-    <Box>
-      <Box p={3} m={3} display="flex" justifyContent="center">
-        <Typography>How are you understanding today's material?</Typography>
+    <>
+      <Box m={5}>
+        <Paper elevation={4}>
+          <Box paddingTop={6} paddingBottom={6}>
+            <Typography align="center">How well did you understand today's material?</Typography>
+            <Box p={4} display="flex" justifyContent="center">
+              <Typography align="right">Did not understand.</Typography>
+              <Box width="65%" paddingLeft={5} paddingRight={5}>
+                <FeedbackSlider slider={slider} setSlider={setSlider} />
+              </Box>
+              <Typography>Understood well!</Typography>
+            </Box>
+          </Box>
+        </Paper>
       </Box>
-      <Grid container direction="row" spacing={3}>
-        <Grid item xs>
-          <Typography>Not at all...</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <FeedbackSlider slider={slider} setSlider={setSlider} />
-        </Grid>
-        <Grid item xs>
-          <Typography>Very well!</Typography>
-        </Grid>
-      </Grid>
-      <Box display="flex" justifyContent="center">
-        <Button variant="contained" color="primary" onClick={handleNext}>
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleBack}
+          startIcon={<ArrowBack />}
+        >
+          Back
+        </Button>
+        <Box width="75%" marginLeft={3} marginRight={3}>
+          <Steps activeStep={2} />
+        </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNext}
+          endIcon={<ArrowForward />}
+        >
           Next
         </Button>
       </Box>
-      <Steps activeStep={2} />
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}
@@ -72,7 +87,7 @@ function Understanding({ Steps, FeedbackSlider }) {
           Please complete your feedback.
         </Alert>
       </Snackbar>
-    </Box>
+    </>
   );
 }
 
