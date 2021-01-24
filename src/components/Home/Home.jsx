@@ -12,8 +12,9 @@ import {
   FormControl,
   Grid,
   Snackbar,
+  Paper,
 } from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
+import { AccountCircle, ArrowForward } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
 
 function Home({ Steps }) {
@@ -28,7 +29,7 @@ function Home({ Steps }) {
   useEffect(() => checkFeedbackReducer(), []);
 
   const checkFeedbackReducer = () => {
-    if (feedback.name) {
+    if (feedback.support) {
       setSuccessSnackbarOpen(true);
       dispatch({
         type: 'CLEAR',
@@ -63,28 +64,43 @@ function Home({ Steps }) {
   };
 
   return (
-    <Box p={3}>
-      <FormControl>
-        <Grid container spacing={2} direction="row" alignItems="center">
-          <Grid item>
-            <InputLabel htmlFor="enterName">Enter your name</InputLabel>
-            <Input
-              id="enterName"
-              startAdornment={
-                <InputAdornment position="start">
-                  <AccountCircle />
-                </InputAdornment>
-              }
-              onChange={(event) => setName(event.target.value)}
-            />
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="primary" onClick={handleClick}>
-              Click to begin!
-            </Button>
-          </Grid>
-        </Grid>
-      </FormControl>
+    <>
+      <Paper elevation={4}>
+        <Box
+          p={10}
+          m={4}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <FormControl>
+            <Grid container alignItems="center" spacing={3}>
+              <Grid item>
+                <InputLabel htmlFor="enterName">Enter your name</InputLabel>
+                <Input
+                  id="enterName"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
+                  onChange={(event) => setName(event.target.value)}
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleClick}
+                  endIcon={<ArrowForward />}
+                >
+                  Start
+                </Button>
+              </Grid>
+            </Grid>
+          </FormControl>
+        </Box>
+      </Paper>
       <Steps activeStep={0} />
       <Snackbar
         open={alertSnackbarOpen}
@@ -114,7 +130,7 @@ function Home({ Steps }) {
           Thanks for submitting your feedback!
         </Alert>
       </Snackbar>
-    </Box>
+    </>
   );
 }
 

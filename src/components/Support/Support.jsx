@@ -7,9 +7,10 @@ import {
   Box,
   Typography,
   Button,
-  Grid,
+  Paper,
   Snackbar,
 } from '@material-ui/core';
+import { ArrowForward, ArrowBack } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
 
 function Support({ Steps, FeedbackSlider }) {
@@ -30,34 +31,54 @@ function Support({ Steps, FeedbackSlider }) {
     }
   };
 
+  const handleBack = () => {
+    history.push('/understanding');
+  }
+
   const handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return setSnackbarOpen(false);
     }
+    return setSnackbarOpen(false);
   };
 
   return (
-    <Box>
-      <Box p={3} m={3} display="flex" justifyContent="center">
-        <Typography>How supported do you feel today?</Typography>
+    <>
+      <Box m={5}>
+        <Paper elevation={4}>
+          <Box paddingTop={6} paddingBottom={6}>
+            <Typography align="center">How well supported do you feel today?</Typography>
+            <Box p={4} display="flex" justifyContent="center">
+              <Typography align="right">Not supported.</Typography>
+              <Box width="65%" paddingLeft={5} paddingRight={5}>
+                <FeedbackSlider slider={slider} setSlider={setSlider} />
+              </Box>
+              <Typography>Very supported!</Typography>
+            </Box>
+          </Box>
+        </Paper>
       </Box>
-      <Grid container direction="row" spacing={3}>
-        <Grid item xs>
-          <Typography>Not at all supported...</Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <FeedbackSlider slider={slider} setSlider={setSlider} />
-        </Grid>
-        <Grid item xs>
-          <Typography>Extremely supported!</Typography>
-        </Grid>
-      </Grid>
-      <Box display="flex" justifyContent="center">
-        <Button variant="contained" color="primary" onClick={handleNext}>
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleBack}
+          startIcon={<ArrowBack />}
+        >
+          Back
+        </Button>
+        <Box width="75%" marginLeft={3} marginRight={3}>
+          <Steps activeStep={3} />
+        </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleNext}
+          endIcon={<ArrowForward />}
+        >
           Next
         </Button>
       </Box>
-      <Steps activeStep={3} />
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={6000}
@@ -72,7 +93,7 @@ function Support({ Steps, FeedbackSlider }) {
           Please complete your feedback.
         </Alert>
       </Snackbar>
-    </Box>
+    </>
   );
 }
 
