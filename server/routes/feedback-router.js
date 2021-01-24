@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// GET route to get all feedback entries to Admin component
+// GET route to get all feedback entries, axios route is on Admin
 router.get('/', (req, res) => {
   const queryText = `SELECT * FROM "feedback" ORDER BY "date" DESC, "id";`;
 
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// POST route to add feedback entry to database
+// POST route to add feedback entry to database, axios route is on ViewResults
 router.post('/', (req, res) => {
   let results = req.body;
 
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// PUT route to change flagged status on Admin
+// PUT route to toggle flagged status, axios route is on AdminListItem
 router.put('/:id', (req, res) => {
   const queryText = `
     UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1;
@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// DELETE route to delete feedback entry on Admin
+// DELETE route to delete feedback entry, axios route is on AdminListItem
 router.delete('/:id', (req, res) => {
   const queryText = `DELETE FROM "feedback" WHERE "id" = $1;`;
 

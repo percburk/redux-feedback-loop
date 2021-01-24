@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 
 // material-ui imports
 import {

@@ -1,5 +1,5 @@
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
 // material-ui imports

@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
 
 // material-ui imports
 import { Box, Typography, Button, Grid, Snackbar } from '@material-ui/core';

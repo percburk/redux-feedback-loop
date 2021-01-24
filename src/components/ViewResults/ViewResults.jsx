@@ -1,7 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 // material-ui imports
 import {
@@ -35,7 +35,7 @@ function ViewResults({ Steps }) {
   const handleDialogClose = (clicked) => {
     if (clicked === 'no') {
       setDialogOpen(false);
-    } else if (clicked === 'yes') {
+    } else {
       dispatch({
         type: 'CLEAR_KEEP_NAME',
         payload: { name: results.name, reset: true },
@@ -71,7 +71,7 @@ function ViewResults({ Steps }) {
         <DialogTitle>{'Are you sure you want to reset?'}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Your will need to start your feedback from the beginning.
+            You will need to start your feedback from the beginning.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

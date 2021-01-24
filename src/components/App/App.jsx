@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
-// material-ui imports
-import { Container, Box, Typography } from '@material-ui/core';
+// material-ui imports, css
+import { Container, Box, Typography, ThemeProvider } from '@material-ui/core';
+import './App.css';
 
 // component imports
 import Home from '../Home/Home';
@@ -19,7 +19,7 @@ import FeedbackSlider from '../FeedbackSlider/FeedbackSlider';
 function App() {
   return (
     <Router>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Box
           p={3}
           m={3}
@@ -27,7 +27,7 @@ function App() {
           bgcolor="palevioletred"
           textAlign="center"
         >
-          <Typography variant="h3">Feedback!</Typography>
+          <Typography variant="h4">Reflections</Typography>
         </Box>
         <Route path="/" exact>
           <Home Steps={Steps} />
