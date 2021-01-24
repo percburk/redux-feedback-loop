@@ -3,8 +3,10 @@ CREATE DATABASE "prime_feedback";
 
 -- Switch to "prime_feedback" before making:
 -- Table to store the feedback
+-- added "name" to table columns!
 CREATE TABLE "feedback" (
   "id" serial primary key,
+  "name" VARCHAR(80),
   "feeling" INT not null,
   "understanding" INT not null,
   "support" INT not null,
@@ -14,5 +16,5 @@ CREATE TABLE "feedback" (
 ); 
 
 -- Sample feedback item
-INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-VALUES (4, 4, 5, 'Doing Great!');
+INSERT INTO "feedback" ("name", "feeling", "understanding", "support", "comments")
+VALUES ('Kevin', 4, 4, 5, 'Doing Great!');
