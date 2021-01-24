@@ -40,6 +40,7 @@ function Admin() {
             <TableCell>Understanding</TableCell>
             <TableCell>Support</TableCell>
             <TableCell>Comments</TableCell>
+            <TableCell>Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 // GET route to get all feedback entries to Admin component
 router.get('/', (req, res) => {
-  const queryText = `SELECT * FROM "feedback" ORDER BY "date" DESC;`;
+  const queryText = `SELECT * FROM "feedback" ORDER BY "date" DESC, "id";`;
 
   pool
     .query(queryText)
@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
   let results = req.body;
 
   const queryText = `
-    INSERT INTO "feedback" ("name", "feeling", "understanding", "support", "comments")
+    INSERT INTO "feedback" ("name", "feeling", "understanding", 
+    "support", "comments") 
     VALUES ($1, $2, $3, $4, $5);
   `;
 
@@ -39,19 +40,30 @@ router.post('/', (req, res) => {
     });
 });
 
-// PUT route to change flagged status
+// PUT route to change flagged status on Admin
 router.put('/:id', (req, res) => {
-  const id = req.params.id;
-
   const queryText = `
     UPDATE "feedback" SET "flagged" = NOT "flagged" WHERE "id" = $1;
   `;
 
   pool
-    .query(queryText, [id])
+    .query(queryText, [req.params.id])
     .then(res.sendStatus(200))
     .catch((err) => {
       console.error(`error in PUT with ${queryText}`, err);
+      res.sendStatus(500);
+    });
+});
+
+// DELETE route to delete feedback entry on Admin
+router.delete('/:id', (req, res) => {
+  const queryText = `DELETE FROM "feedback" WHERE "id" = $1;`;
+
+  pool
+    .query(queryText, [req.params.id])
+    .then(res.sendStatus(204))
+    .catch((err) => {
+      console.error(`error in DELETE with ${queryText}`, err);
       res.sendStatus(500);
     });
 });

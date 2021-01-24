@@ -11,7 +11,8 @@ import {
   Flag,
   FlagOutlined,
   DeleteOutline,
-  ChatOutlined
+  ChatOutlined,
+  DeleteOutlineRounded
 } from '@material-ui/icons';
 
 // system imports
@@ -42,7 +43,7 @@ function AdminListItem({ entry, getFeedback }) {
     <TableRow>
       <TableCell>
         <IconButton size="small" onClick={handleFlagged}>
-          {flagged ? <Flag /> : <FlagOutlined />}
+          {flagged ? <Flag color="secondary" /> : <FlagOutlined />}
         </IconButton>
       </TableCell>
       <TableCell>{entry.date}</TableCell>
@@ -51,6 +52,11 @@ function AdminListItem({ entry, getFeedback }) {
       <TableCell>{entry.understanding}</TableCell>
       <TableCell>{entry.support}</TableCell>
       <TableCell>{entry.comments}</TableCell>
+      <TableCell>
+        <IconButton size="small" onClick={handleDelete}>
+          <DeleteOutline />
+        </IconButton>
+      </TableCell>
     </TableRow>
   );
 }
