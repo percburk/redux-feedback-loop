@@ -12,6 +12,7 @@ import logger from 'redux-logger';
 // reducers
 import feedbackReducer from './components/redux/reducers/feedbackReducer';
 
+// create store for reducers, add logger to middleware
 const storeInstance = createStore(
   combineReducers({
     feedbackReducer,

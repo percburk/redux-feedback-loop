@@ -15,18 +15,23 @@ Using client side routing, the user goes through four pages of feedback: Feeling
 ## Screen Shots
 
 - Slider
+
 ![slider](public/images/slider.png)
 
 - Validation
+
 ![validation](public/images/validation.png)
 
 - Results Page
+
 ![results](public/images/results.png)
 
 - Snackbar Updates
+
 ![snackbar](public/images/snackbar.png)
 
 - Admin Table
+
 ![admin](public/images/admin.png)
 
 ## Prerequisites
@@ -48,7 +53,7 @@ Using client side routing, the user goes through four pages of feedback: Feeling
 This is an application to collect daily feedback from students.
 
 1. On the home screen, type in your name.
-2. Enter your feedback rating (1-6) for each section. (Feeling, Understanding, Support). These fields are required.
+2. Enter your feedback rating (1-6) for each section. (Feeling, Understanding, Support) These fields are required.
 3. Enter comments if you'd like. This field is optional.
 4. Review your feedback entry. Toggle viewing your comments with the 'Chat' icon. You can hit RESET to start again, or hit SUBMIT, which will send your feedback entry to the database.
 5. Visit [localhost:3000/#/admin](http://localhost:3000/#/admin) to see the list of all entries from the database. You can flag entires by clicking the 'Flag' icon, toggle viewing comments by clicking the 'Chat' icon, or delete an entry.

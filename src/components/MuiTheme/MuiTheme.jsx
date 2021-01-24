@@ -1,5 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
+// color palette, font selections, and some custom typography
 const MuiTheme = createMuiTheme({
   palette: {
     primary: {
