@@ -4,6 +4,7 @@ CREATE DATABASE "prime_feedback";
 -- Switch to "prime_feedback" before making:
 -- Table to store the feedback
 -- added "name" to table columns!
+
 CREATE TABLE "feedback" (
   "id" serial primary key,
   "name" VARCHAR(80),
