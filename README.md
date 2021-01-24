@@ -12,12 +12,21 @@ The use of Redux and client side routing was fairly straightforward for what thi
 
 Using client side routing, the user goes through four pages of feedback: Feeling, Understanding, Support, and Comments. There is validation of the entries on all pages except for Comments, which are optional. Snackbars are there to notify users of the entry requirements. Finally, on the review page, the user can double check all of their entries, use the navigation at the bottom to go back to specific pages, or even hit the Reset button to go back to the first "Feeling" feedback page. If everything looks good, the user can hit "Submit" which sends the feedback entry to the database. The user is then redirected back to "home" with a Snackbar confirming their submission.
 
-## Screen Shot
+## Screen Shots
 
+- Slider
 ![slider](public/images/slider.png)
+
+- Validation
 ![validation](public/images/validation.png)
+
+- Results Page
 ![results](public/images/results.png)
+
+- Snackbar Updates
 ![snackbar](public/images/snackbar.png)
+
+- Admin Table
 ![admin](public/images/admin.png)
 
 ## Prerequisites
