@@ -19,7 +19,7 @@ function FeedbackSlider({ slider, setSlider }) {
       min={1}
       max={6}
       valueLabelDisplay="auto"
-      onChange={(event, value) => setSlider(value)}
+      onChange={(event, newValue) => setSlider(newValue)}
       marks={marks}
       required
     />

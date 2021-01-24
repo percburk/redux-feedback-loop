@@ -7,7 +7,6 @@ import {
   Box,
   Typography,
   Button,
-  Slider,
   Grid,
   Snackbar,
 } from '@material-ui/core';
