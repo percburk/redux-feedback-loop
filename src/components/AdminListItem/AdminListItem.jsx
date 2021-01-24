@@ -5,14 +5,14 @@ import {
   Typography,
   IconButton,
   Box,
+  Collapse,
 } from '@material-ui/core';
 import {
-  KeyboardArrowUpIcon,
+  ExpandLess,
   Flag,
   FlagOutlined,
   DeleteOutline,
   ChatOutlined,
-  DeleteOutlineRounded
 } from '@material-ui/icons';
 
 // system imports
@@ -40,24 +40,41 @@ function AdminListItem({ entry, getFeedback }) {
   };
 
   return (
-    <TableRow>
-      <TableCell>
-        <IconButton size="small" onClick={handleFlagged}>
-          {flagged ? <Flag color="secondary" /> : <FlagOutlined />}
-        </IconButton>
-      </TableCell>
-      <TableCell>{entry.date}</TableCell>
-      <TableCell>{entry.name}</TableCell>
-      <TableCell>{entry.feeling}</TableCell>
-      <TableCell>{entry.understanding}</TableCell>
-      <TableCell>{entry.support}</TableCell>
-      <TableCell>{entry.comments}</TableCell>
-      <TableCell>
-        <IconButton size="small" onClick={handleDelete}>
-          <DeleteOutline />
-        </IconButton>
-      </TableCell>
-    </TableRow>
+    <>
+      <TableRow>
+        <TableCell>
+          <IconButton size="small" onClick={handleFlagged}>
+            {flagged ? <Flag color="secondary" /> : <FlagOutlined />}
+          </IconButton>
+        </TableCell>
+        <TableCell>{entry.date}</TableCell>
+        <TableCell>{entry.name}</TableCell>
+        <TableCell>{entry.feeling}</TableCell>
+        <TableCell>{entry.understanding}</TableCell>
+        <TableCell>{entry.support}</TableCell>
+        <TableCell>
+          {entry.comments && (
+            <IconButton size="small" onClick={() => setRowOpen(!rowOpen)}>
+              {rowOpen ? <ExpandLess /> : <ChatOutlined color="primary" />}
+            </IconButton>
+          )}
+        </TableCell>
+        <TableCell>
+          <IconButton size="small" onClick={handleDelete}>
+            <DeleteOutline />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+          <Collapse in={rowOpen} timeout="auto" unmountOnExit>
+            <Box m={2}>
+              <Typography>{entry.comments}</Typography>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </>
   );
 }
 

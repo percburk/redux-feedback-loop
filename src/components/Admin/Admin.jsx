@@ -1,7 +1,5 @@
 // material-ui imports
 import {
-  Box,
-  IconButton,
   Table,
   TableBody,
   TableCell,
