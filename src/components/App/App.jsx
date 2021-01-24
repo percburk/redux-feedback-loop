@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
+
+// material-ui imports
 import { Container, Box, Typography } from '@material-ui/core';
 
-// import components into App
+// component imports into App
 import Home from '../Home/Home';
 import Feeling from '../Feeling/Feeling';
 import Understanding from '../Understanding/Understanding';
@@ -12,6 +14,7 @@ import Comments from '../Comments/Comments';
 import ViewResults from '../ViewResults/ViewResults';
 import Admin from '../Admin/Admin';
 import Steps from '../Steps/Steps';
+import FeedbackSlider from '../FeedbackSlider/FeedbackSlider';
 
 function App() {
   return (
@@ -30,13 +33,13 @@ function App() {
           <Home Steps={Steps} />
         </Route>
         <Route path="/feeling">
-          <Feeling Steps={Steps} />
+          <Feeling Steps={Steps} FeedbackSlider={FeedbackSlider} />
         </Route>
         <Route path="/understanding">
-          <Understanding Steps={Steps} />
+          <Understanding Steps={Steps} FeedbackSlider={FeedbackSlider} />
         </Route>
         <Route path="/support">
-          <Support Steps={Steps} />
+          <Support Steps={Steps} FeedbackSlider={FeedbackSlider} />
         </Route>
         <Route path="/comments">
           <Comments Steps={Steps} />

@@ -1,17 +1,12 @@
 import { useHistory } from 'react-router-dom';
-import {
-  Box,
-  Typography,
-  Button,
-  Slider,
-  Grid,
-  Snackbar,
-} from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-function Feeling({ Steps }) {
+// material-ui imports
+import { Box, Typography, Button, Grid, Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+
+function Feeling({ Steps, FeedbackSlider }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [slider, setSlider] = useState(0);
@@ -19,26 +14,12 @@ function Feeling({ Steps }) {
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
   const feedbackReducer = useSelector((state) => state.feedbackReducer);
 
-  const marks = [
-    { value: 1, label: '1' },
-    { value: 2, label: '2' },
-    { value: 3, label: '3' },
-    { value: 4, label: '4' },
-    { value: 5, label: '5' },
-    { value: 6, label: '6' },
-  ];
-
   useEffect(() => checkForReset(), []);
 
   const checkForReset = () => {
     if (feedbackReducer.reset) {
       setSuccessSnackbarOpen(true);
     }
-  };
-
-  const handleSlider = (event, newValue) => {
-    setSlider(newValue);
-    console.log(slider);
   };
 
   const handleNext = () => {
@@ -75,17 +56,7 @@ function Feeling({ Steps }) {
           <Typography>Feeling bad...</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Slider
-            defaultValue={1}
-            value={slider}
-            step={1}
-            marks
-            min={1}
-            max={6}
-            valueLabelDisplay="auto"
-            onChange={handleSlider}
-            marks={marks}
-          />
+          <FeedbackSlider slider={slider} setSlider={setSlider} />
         </Grid>
         <Grid item xs>
           <Typography>Feeling great!</Typography>

@@ -1,4 +1,8 @@
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
+// material-ui imports
 import {
   Box,
   Typography,
@@ -8,28 +12,12 @@ import {
   Snackbar,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 
-function Support({ Steps }) {
+function Support({ Steps, FeedbackSlider }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [slider, setSlider] = useState(0);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-
-  const marks = [
-    { value: 1, label: '1' },
-    { value: 2, label: '2' },
-    { value: 3, label: '3' },
-    { value: 4, label: '4' },
-    { value: 5, label: '5' },
-    { value: 6, label: '6' },
-  ];
-
-  const handleSlider = (event, newValue) => {
-    setSlider(newValue);
-    console.log(slider);
-  };
 
   const handleNext = () => {
     if (slider === 0) {
@@ -59,18 +47,7 @@ function Support({ Steps }) {
           <Typography>Not at all supported...</Typography>
         </Grid>
         <Grid item xs={6}>
-          <Slider
-            defaultValue={1}
-            value={slider}
-            step={1}
-            marks
-            min={1}
-            max={6}
-            valueLabelDisplay="auto"
-            onChange={handleSlider}
-            marks={marks}
-            required
-          />
+          <FeedbackSlider slider={slider} setSlider={setSlider} />
         </Grid>
         <Grid item xs>
           <Typography>Extremely supported!</Typography>

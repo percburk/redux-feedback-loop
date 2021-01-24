@@ -1,5 +1,7 @@
+// material-ui imports
 import { Stepper, Step, StepLabel, Box } from '@material-ui/core';
 
+// Steps is passed to all feedback pages in App via props
 function Steps({ activeStep }) {
   const stepNames = [
     'Home',

@@ -1,3 +1,9 @@
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+// material-ui imports
 import {
   Box,
   Button,
@@ -10,10 +16,6 @@ import {
 } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { Alert } from '@material-ui/lab';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 function Home({ Steps }) {
   const history = useHistory();

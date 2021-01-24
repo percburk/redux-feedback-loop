@@ -1,3 +1,9 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
+
+// material-ui imports
 import {
   Box,
   Typography,
@@ -8,10 +14,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
-import axios from 'axios';
 
 function ViewResults({ Steps }) {
   const history = useHistory();

@@ -1,7 +1,9 @@
 import { useHistory } from 'react-router-dom';
-import { Box, Typography, Button, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+
+// material-ui imports
+import { Box, Typography, Button, TextField } from '@material-ui/core';
 
 function Comments({ Steps }) {
   const history = useHistory();

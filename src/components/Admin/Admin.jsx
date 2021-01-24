@@ -48,15 +48,6 @@ function Admin() {
         </TableBody>
       </Table>
     </TableContainer>
-
-    // {feedbackData.map((entry) => {
-    //   return (
-    //     <li key={entry.id}>
-    //       {entry.date} {entry.feeling} {entry.understanding}
-    //       {entry.support} {entry.comments} {entry.flagged}
-    //     </li>
-    //   );
-    // })}
   );
 }
 
