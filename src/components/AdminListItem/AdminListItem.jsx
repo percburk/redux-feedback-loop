@@ -1,3 +1,7 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { DateTime } from 'luxon';
+
 // material-ui imports
 import {
   TableRow,
@@ -14,11 +18,6 @@ import {
   DeleteOutline,
   ChatOutlined,
 } from '@material-ui/icons';
-
-// system imports
-import axios from 'axios';
-import { useState } from 'react';
-import { DateTime } from 'luxon';
 
 function AdminListItem({ entry, getFeedback }) {
   const [rowOpen, setRowOpen] = useState(false);
@@ -69,7 +68,7 @@ function AdminListItem({ entry, getFeedback }) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
           <Collapse in={rowOpen} timeout="auto" unmountOnExit>
             <Box m={2} textAlign="center">
-              <Typography>{entry.comments}</Typography>
+              <Typography variant="body2">{entry.comments}</Typography>
             </Box>
           </Collapse>
         </TableCell>

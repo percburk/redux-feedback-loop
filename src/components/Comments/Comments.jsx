@@ -10,10 +10,6 @@ function Comments({ Steps }) {
   const dispatch = useDispatch();
   const [comment, setComment] = useState('');
 
-  const handleComment = (event) => {
-    setComment(event.target.value);
-  };
-
   const handleNext = () => {
     dispatch({
       type: 'ADD_COMMENTS',
@@ -30,7 +26,7 @@ function Comments({ Steps }) {
         fullWidth
         rows={6}
         variant="outlined"
-        onChange={handleComment}
+        onChange={(event) => setComment(event.target.value)}
       />
       <Box padding={3} display="flex" justifyContent="center">
         <Button variant="contained" color="primary" onClick={handleNext}>

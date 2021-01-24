@@ -1,5 +1,7 @@
 import { Slider } from '@material-ui/core';
 
+// FeedbackSlider is imported into App 
+// passed down to specific feedback components via props
 function FeedbackSlider({ slider, setSlider }) {
   const marks = [
     { value: 1, label: '1' },
