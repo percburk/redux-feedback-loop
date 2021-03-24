@@ -1,6 +1,9 @@
-# Project Name
+![languages](https://img.shields.io/github/languages/top/percburk/redux-feedback-loop?style=flat-square)
+![file size](https://img.shields.io/github/languages/code-size/percburk/redux-feedback-loop?style=flat-square)
+![forks](https://img.shields.io/github/forks/percburk/redux-feedback-loop?style=social)
 
-Redux Feedback Loop
+# Redux Feedback Loop
+
 
 ## Description
 
