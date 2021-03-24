@@ -21,7 +21,7 @@ function Home({ Steps }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const feedback = useSelector((state) => state.feedbackReducer);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(!feedback.name ? '' : feedback.name);
   const [alertSnackbarOpen, setAlertSnackbarOpen] = useState(false);
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
   console.log(feedback);

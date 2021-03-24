@@ -26,10 +26,6 @@ Using client side routing, the user goes through four pages of feedback: Feeling
 
 ![results](public/images/results.png)
 
-- Snackbar Updates
-
-![snackbar](public/images/snackbar.png)
-
 - Admin Table
 
 ![admin](public/images/admin.png)

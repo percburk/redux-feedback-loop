@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui imports
 import {
@@ -16,7 +16,10 @@ import { Alert } from '@material-ui/lab';
 function Support({ Steps, FeedbackSlider }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [slider, setSlider] = useState(0);
+  const feedback = useSelector((state) => state.feedbackReducer);
+  const [slider, setSlider] = useState(
+    !feedback.support ? 0 : feedback.support
+  );
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleNext = () => {

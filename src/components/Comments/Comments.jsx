@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui imports
 import { Box, Typography, Button, TextField, Paper } from '@material-ui/core';
@@ -9,12 +9,15 @@ import { ArrowForward, ArrowBack } from '@material-ui/icons';
 function Comments({ Steps }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [comment, setComment] = useState('');
+  const feedback = useSelector((state) => state.feedbackReducer);
+  const [comments, setComments] = useState(
+    !feedback.comments ? '' : feedback.comments
+  );
 
   const handleNext = () => {
     dispatch({
       type: 'ADD_COMMENTS',
-      payload: comment,
+      payload: comments,
     });
     history.push('/viewResults');
   };
@@ -37,7 +40,8 @@ function Comments({ Steps }) {
                 fullWidth
                 rows={3}
                 variant="outlined"
-                onChange={(event) => setComment(event.target.value)}
+                onChange={(event) => setComments(event.target.value)}
+                value={feedback.comments}
               />
             </Box>
           </Box>

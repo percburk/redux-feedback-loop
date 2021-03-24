@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui imports
 import { Box, Typography, Button, Paper, Snackbar } from '@material-ui/core';
@@ -10,7 +10,10 @@ import { Alert } from '@material-ui/lab';
 function Understanding({ Steps, FeedbackSlider }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [slider, setSlider] = useState(0);
+  const feedback = useSelector((state) => state.feedbackReducer);
+  const [slider, setSlider] = useState(
+    !feedback.understanding ? 0 : feedback.understanding
+  );
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleNext = () => {
@@ -27,7 +30,7 @@ function Understanding({ Steps, FeedbackSlider }) {
 
   const handleBack = () => {
     history.push('/feeling');
-  }
+  };
 
   const handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -41,7 +44,9 @@ function Understanding({ Steps, FeedbackSlider }) {
       <Box m={5}>
         <Paper elevation={4}>
           <Box paddingTop={6} paddingBottom={6}>
-            <Typography align="center">How well did you understand today's material?</Typography>
+            <Typography align="center">
+              How well did you understand today's material?
+            </Typography>
             <Box p={4} display="flex" justifyContent="center">
               <Typography align="right">Did not understand.</Typography>
               <Box width="65%" paddingLeft={5} paddingRight={5}>

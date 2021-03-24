@@ -10,15 +10,17 @@ import { Alert } from '@material-ui/lab';
 function Feeling({ Steps, FeedbackSlider }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [slider, setSlider] = useState(0);
+  const feedback = useSelector((state) => state.feedbackReducer);
+  const [slider, setSlider] = useState(
+    !feedback.feeling ? 0 : feedback.feeling
+  );
   const [alertSnackbarOpen, setAlertSnackbarOpen] = useState(false);
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
-  const feedbackReducer = useSelector((state) => state.feedbackReducer);
 
   useEffect(() => checkForReset(), []);
 
   const checkForReset = () => {
-    if (feedbackReducer.reset) {
+    if (feedback.reset) {
       setSuccessSnackbarOpen(true);
     }
   };
